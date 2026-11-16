@@ -1,0 +1,22 @@
+{
+  "method": "Handwritten src/main/java nonblank lines after lexical comment removal; imports/braces included; generated/tests/fixtures excluded",
+  "beforeRevision": "8c22d88",
+  "before": {
+    "client": 558,
+    "examples": 60,
+    "examples-binance": 1003,
+    "feeds": 789,
+    "protocol": 296,
+    "sequencer": 477
+  },
+  "after": {
+    "client": 558,
+    "examples": 60,
+    "examples-binance": 1004,
+    "feeds": 789,
+    "protocol": 296,
+    "sequencer": 468
+  },
+  "beforeRuntimeExcludingDemo": 3123,
+  "afterRuntimeExcludingDemo": 3115
+}

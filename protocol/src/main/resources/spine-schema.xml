@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Replacement wire. Provisioned identities never recur; zero means absent. Payloads contain complete SBE messages. -->
+<sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe" package="io.github.jstadeusiak.spine.protocol.sbe"
+                   id="101" version="1" semanticVersion="1.0.0" byteOrder="littleEndian">
+  <types>
+    <composite name="messageHeader">
+      <type name="blockLength" primitiveType="uint16"/>
+      <type name="templateId" primitiveType="uint16"/>
+      <type name="schemaId" primitiveType="uint16"/>
+      <type name="version" primitiveType="uint16"/>
+    </composite>
+    <type name="sequence" primitiveType="uint64" maxValue="9223372036854775807"/>
+    <composite name="payloadEncoding">
+      <type name="length" primitiveType="uint32" maxValue="2162764"/>
+      <type name="varData" primitiveType="uint8" length="0"/>
+    </composite>
+    <composite name="groupSizeEncoding">
+      <type name="blockLength" primitiveType="uint16"/>
+      <type name="numInGroup" primitiveType="uint16" maxValue="1024"/>
+    </composite>
+    <enum name="AdmissionStatus" encodingType="uint8">
+      <validValue name="INITIALIZED">0</validValue>
+      <validValue name="ACCEPTED">1</validValue>
+      <validValue name="DUPLICATE">2</validValue>
+      <validValue name="UNINITIALIZED">3</validValue>
+      <validValue name="LOG_CONFLICT">4</validValue>
+      <validValue name="CONFLICT">5</validValue>
+      <validValue name="EXPIRED">6</validValue>
+      <validValue name="GAP">7</validValue>
+      <validValue name="CAPACITY">8</validValue>
+      <validValue name="INVALID">9</validValue>
+      <validValue name="EXHAUSTED">10</validValue>
+    </enum>
+    <type name="digest" primitiveType="uint8" length="32"/>
+    <composite name="applicationResultEncoding">
+      <type name="length" primitiveType="uint32" maxValue="2097152"/>
+      <type name="varData" primitiveType="uint8" length="0"/>
+    </composite>
+    <composite name="stateEncoding">
+      <type name="length" primitiveType="uint32" maxValue="67108864"/>
+      <type name="varData" primitiveType="uint8" length="0"/>
+    </composite>
+  </types>
+  <sbe:message name="SequencedEvent" id="1">
+    <field name="logId" id="1" type="uint64"/>
+    <field name="sequence" id="2" type="sequence"/>
+    <field name="sequencedTimeNanos" id="3" type="int64" description="-1 means unavailable"/>
+    <field name="sourceId" id="4" type="uint32" description="0 means unknown"/>
+    <field name="sourceConfigVersion" id="5" type="uint32" description="0 means unknown"/>
+    <field name="clockId" id="6" type="uint32" description="0 means unknown"/>
+    <field name="receiveTimeNanos" id="7" type="int64" description="-1 means unavailable"/>
+    <field name="completeTimeNanos" id="8" type="int64" description="-1 means unavailable"/>
+    <field name="readyTimeNanos" id="9" type="int64" description="-1 means unavailable"/>
+    <data name="payload" id="10" type="payloadEncoding"/>
+  </sbe:message>
+  <sbe:message name="InitializeLog" id="2" description="Nonzero provisioned identity; identical initialization is idempotent">
+    <field name="logId" id="1" type="uint64"/>
+    <field name="applicationId" id="2" type="uint32"/>
+    <field name="applicationVersion" id="3" type="uint32"/>
+    <field name="configurationId" id="4" type="uint32"/>
+  </sbe:message>
+  <sbe:message name="ObservationProposal" id="3" description="Expected log and producer incarnation; contiguous sequence starts at one">
+    <field name="logId" id="1" type="uint64"/>
+    <field name="producerId" id="2" type="uint64"/>
+    <field name="producerSequence" id="3" type="sequence"/>
+    <field name="sourceId" id="4" type="uint32"/>
+    <field name="sourceConfigVersion" id="5" type="uint32"/>
+    <field name="clockId" id="6" type="uint32"/>
+    <field name="receiveTimeNanos" id="7" type="int64"/>
+    <field name="completeTimeNanos" id="8" type="int64"/>
+    <field name="readyTimeNanos" id="9" type="int64"/>
+    <data name="payload" id="10" type="payloadEncoding"/>
+  </sbe:message>
+  <sbe:message name="AdmissionResult" id="4">
+    <field name="producerId" id="1" type="uint64"/>
+    <field name="producerSequence" id="2" type="sequence"/>
+    <field name="status" id="3" type="AdmissionStatus"/>
+    <data name="canonicalEvent" id="4" type="payloadEncoding"/>
+  </sbe:message>
+  <sbe:message name="SequencerOutputSnapshot" id="6" description="Pure state; transport recording fence is outside this message">
+    <field name="logId" id="1" type="uint64" description="0 means uninitialized"/>
+    <field name="sequence" id="2" type="sequence"/>
+    <field name="applicationId" id="5" type="uint32"/>
+    <field name="applicationVersion" id="6" type="uint32"/>
+    <field name="configurationId" id="7" type="uint32"/>
+    <field name="snapshotDigest" id="8" type="digest"/>
+    <group name="receipts" id="3" dimensionType="groupSizeEncoding">
+      <field name="producerId" id="1" type="uint64"/>
+      <field name="producerSequence" id="2" type="sequence"/>
+      <field name="canonicalSequence" id="3" type="sequence"/>
+      <field name="sequencedTimeNanos" id="4" type="int64"/>
+      <field name="digest" id="5" type="digest"/>
+      <data name="applicationResult" id="7" type="applicationResultEncoding"/>
+    </group>
+    <data name="applicationState" id="4" type="stateEncoding"/>
+  </sbe:message>
+  <sbe:message name="RecordedHead" id="7" description="Complete recorded cursor and its physical recording fence">
+    <field name="logId" id="1" type="uint64"/>
+    <field name="sequence" id="2" type="sequence"/>
+    <field name="archiveId" id="3" type="int64"/>
+    <field name="outputStreamId" id="4" type="int32"/>
+    <field name="recordingId" id="5" type="int64"/>
+    <field name="sessionId" id="6" type="int32"/>
+    <field name="position" id="7" type="int64"/>
+    <field name="beaconSequence" id="8" type="sequence"/>
+  </sbe:message>
+</sbe:messageSchema>

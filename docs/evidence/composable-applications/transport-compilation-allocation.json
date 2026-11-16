@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-16",
+  "test": "TransportAllocationTest.warmedProducerServiceAndArchiveFollowerAllocateZeroAtMaximumSize",
+  "test_source_sha256": "39a0a00f449cb8bfa93e6539076cc35991dc6b9a80250300420741fd2556b6df",
+  "hosted_failure": {
+    "runtime": "Temurin 21.0.13",
+    "service_window_messages": 1024,
+    "allocated_bytes": 256,
+    "attribution": "Inference from matching local allocation signature; no hosted per-callback trace was collected."
+  },
+  "local_diagnostic": {
+    "runtime": "Temurin 21.0.11+10",
+    "os": "macOS",
+    "architecture": "aarch64",
+    "aeron": "1.53.3",
+    "agrona": "2.6.1",
+    "tlab": "disabled for complete JFR object-allocation attribution only",
+    "callback_producer_sequence": 6402,
+    "callback_allocated_bytes": 256,
+    "native_conductor_timeout_or_driver_event_calls_in_measured_callbacks": 0,
+    "jfr_event_type": "jdk.ObjectAllocationOutsideTLAB",
+    "event_thread": "clustered-service-0-0",
+    "stack_top": "io.aeron.cluster.service.ContainerClientSession.offer",
+    "stack_bci": -1,
+    "stack_line": 88,
+    "stack_frame_type": "JIT compiled",
+    "events": [
+      {
+        "utc_time": "2026-11-16T12:35:31.385494709Z",
+        "class": "java.lang.String",
+        "allocation_bytes": 24
+      },
+      {
+        "utc_time": "2026-11-16T12:35:31.385506959Z",
+        "class": "byte[]",
+        "allocation_bytes": 72
+      },
+      {
+        "utc_time": "2026-11-16T12:35:31.385508667Z",
+        "class": "java.lang.String",
+        "allocation_bytes": 24
+      },
+      {
+        "utc_time": "2026-11-16T12:35:31.385509167Z",
+        "class": "byte[]",
+        "allocation_bytes": 136
+      }
+    ],
+    "compile_queue": {
+      "compile_id": 3809,
+      "method": "io.aeron.cluster.service.ContainerClientSession.offer(org.agrona.DirectBuffer,int,int)",
+      "target_compiler": "C2",
+      "uptime_seconds": 1.136,
+      "invocation_count": 6404
+    },
+    "class_sha256": "d9456d739b0037ea1a96813b9e9759034e5e367e8fe29544b56dbb020afb90a6",
+    "constant_pool_strings": [
+      {
+        "constant_pool_index": 157,
+        "utf8_index": 158,
+        "recipe": "failed to connect session response publication: \u0001",
+        "ascii_length": 49,
+        "string_bytes": 24,
+        "byte_array_bytes": 72,
+        "total_bytes": 96
+      },
+      {
+        "constant_pool_index": 159,
+        "utf8_index": 160,
+        "recipe": "ClientSession{id=\u0001, responseStreamId=\u0001, responseChannel='\u0001', encodedPrincipal=\u0001, responsePublication=\u0001, isClosing=\u0001}",
+        "ascii_length": 116,
+        "string_bytes": 24,
+        "byte_array_bytes": 136,
+        "total_bytes": 160
+      }
+    ]
+  },
+  "unchanged_test_validation": [
+    {
+      "runtime": "Temurin 21.0.11+10",
+      "jvm_option": "-Xbatch",
+      "result": "PASS",
+      "runs": 1
+    },
+    {
+      "runtime": "Temurin 25.0.4.1+1",
+      "jvm_option": "-Xbatch",
+      "result": "PASS",
+      "runs": 1
+    }
+  ],
+  "validation_notes": "External direct test runner used existing Java21-compiled test/runtime classes on each VM, normal TLAB, and unchanged fixed warm-up, escaping negative controls, native transports and strict zero-byte assertions. Diagnostic instrumentation was absent in these two validation runs. Full Gradle suites and hosted CI are separate evidence.",
+  "source_urls": [
+    "https://raw.githubusercontent.com/openjdk/jdk21u/jdk-21.0.11%2B10/src/hotspot/share/compiler/compileBroker.cpp",
+    "https://raw.githubusercontent.com/aeron-io/aeron/1.53.3/aeron-cluster/src/main/java/io/aeron/cluster/service/ContainerClientSession.java"
+  ]
+}

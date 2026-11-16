@@ -1,0 +1,27 @@
+{
+  "name":"stage-one-local-v1","manifestVersion":1,"loadProfile":"stage-one-local-v1",
+  "transportConfiguration":{"profile":"shared","mediaDriverThreadingMode":"SHARED","archiveThreadingMode":"DEDICATED",
+"clusterConsensusAndService":"separate agent threads","termBytes":1048576,"archiveSegmentBytes":1048576,
+"ipcMtuBytes":1024,"driverTimerIntervalNanos":5000000,"archiveFileSyncLevel":0,"corePinning":false,
+"idleStrategy":{"type":"BackoffIdleStrategy","maxSpins":10,"maxYields":20,"minParkNanos":1000,"maxParkNanos":1000000}}
+,
+  "scope":"single-host single-node deterministic core; direct recorded output; external recorded capture; page-cache",
+  "sustained":{"observations":1000,"scheduledRatePerSecond":100,"seconds":10,"maximumScheduleLatenessMs":100},
+  "burst":{"observations":256,"completeCapturePayloadBytes":65536,"paced":false},
+  "admission":{"p99Ms":500,"p999Ms":1000},"recorded":{"p99Ms":1000,"p999Ms":2000},
+  "fastApplied":{"p99Ms":2000,"p999Ms":3000},
+  "recoveryDeadlineSeconds":20,"minimumLiveCatchupPerSecond":200,"transportStartupSeconds":30,
+  "parentObservedHeapMiB":768,"childObservedHeapMiB":192,"childMaximumHeapMiB":256,"maximumConcurrentChildren":3,
+  "cpu":"diagnostic process CPU samples; no CPU acceptance gate",
+  "latencyMethod":"BEGIN/GO before submit; parent-observed Archive follow/application stdout signals include control IO; admission uses producer-local monotonic elapsed time",
+  "heapMethod":"cached parent MemoryMXBean; parent and child heap samples every 100ms; not allocation maxima",
+  "lagMethod":"parent-sampled admitted cursor minus Archive-delivery cursor; includes replay scheduling",
+  "idleHeadAuthority":"test parent Archive-follow cursor delivered over test control stdin while child data poll is paused; no production head beacon",
+  "consumerTransport":"Archive REPLAY_ALL_AND_FOLLOW; no replay/live merger",
+  "producerRetryIntervalNanos":10000000,
+  "producerLossBoundary":"exact proposal completely recorded before Cluster offer; actual receipt completely recorded before next observation; abrupt JVM loss excludes host/power loss",
+  "sourceDefinitions":[{"sourceId":1,"configurationVersion":1,"clockId":1,"provider":"fixture-provider-1"},
+    {"sourceId":2,"configurationVersion":1,"clockId":1,"provider":"fixture-provider-2"}],
+  "nativeIdentity":"paired numeric venue event IDs; numeric raw frame sequence and borrowed raw bytes",
+  "clockMeaning":"ready UTC nanoseconds; receive/complete unavailable; uncertainty -1; no external clock sync claim"
+}

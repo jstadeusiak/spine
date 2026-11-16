@@ -1,0 +1,51 @@
+{
+  "javaVersion": 25,
+  "tests": 196,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "modules": {
+    "protocol": {
+      "tests": 19,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "client": {
+      "tests": 30,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "sequencer": {
+      "tests": 74,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "testkit": {
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "feeds": {
+      "tests": 24,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "examples-binance": {
+      "tests": 42,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "testJvmOptions": {
+    "sequencer:test": [
+      "-Xbatch"
+    ]
+  },
+  "buildLogSha256": "6f2f4a14d01ca0d1541319a3a4e6cf996771dc5d04268c589539698fb46e9fa7"
+}

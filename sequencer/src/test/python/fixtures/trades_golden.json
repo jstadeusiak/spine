@@ -1,0 +1,24 @@
+{
+  "schemaUrl": "https://raw.githubusercontent.com/binance/binance-spot-api-docs/bed5d358dbe98bfa4722b6c00c27be1e8f0ba40b/sbe/schemas/stream_1_0.xml",
+  "sbeHex": "1200102701000000008002ae205d0600f67f02ae205d0600f8f41900020000000100000000002000ffffffffffffff7f15cd5b070000000001020000000000200015cd5b07000000000100000000000000000742544355534454",
+  "expected": [
+    {
+      "id": 9007199254740993,
+      "price": "92233720368.54775807",
+      "quantity": "0.000123456789",
+      "maker": true,
+      "tradeTimeMicros": 1791244799999990,
+      "eventTimeMicros": 1791244800000000,
+      "childIndex": 0
+    },
+    {
+      "id": 9007199254740994,
+      "price": "1.23456789",
+      "quantity": "1E-12",
+      "maker": false,
+      "tradeTimeMicros": 1791244799999990,
+      "eventTimeMicros": 1791244800000000,
+      "childIndex": 1
+    }
+  ]
+}

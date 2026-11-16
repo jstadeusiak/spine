@@ -1,0 +1,25 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.8.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :compileJava
+> Task :processResources NO-SOURCE
+> Task :classes
+
+> Task :run
+io.github.jstadeusiak.spine.protocol.Wire <- file:<checkout>/build/repository/io/github/jstadeusiak/spine/protocol/1.0.0/protocol-1.0.0.jar
+io.github.jstadeusiak.spine.client.ReliableProducer <- file:<checkout>/build/repository/io/github/jstadeusiak/spine/client/1.0.0/client-1.0.0.jar
+io.github.jstadeusiak.spine.sequencer.SequencerCore <- file:<checkout>/build/repository/io/github/jstadeusiak/spine/sequencer/1.0.0/sequencer-1.0.0.jar
+io.github.jstadeusiak.spine.testkit.ApplicationConformance <- file:<checkout>/build/repository/io/github/jstadeusiak/spine/testkit/1.0.0/testkit-1.0.0-test-fixtures.jar
+io.github.jstadeusiak.spine.testkit.CounterApplication <- file:<checkout>/build/repository/io/github/jstadeusiak/spine/testkit/1.0.0/testkit-1.0.0-test-fixtures.jar
+PUBLISHED_GENERIC_CONSUMER_PASSED Report[commands=9, snapshotCuts=10, canonicalSha256=02a96529abded055c7448fe0efc71fe6e9e64d1c2b00fceef371ad3387913f58, finalSnapshotSha256=cce5529d571e1c3ca62cd15bb9221f954d8faeee2d9ad617c02b60ba5d550b64]
+
+> Task :compileBinanceJava
+> Task :processBinanceResources NO-SOURCE
+> Task :binanceClasses
+
+> Task :optionalBinance
+PUBLISHED_OPTIONAL_BINANCE_PASSED snapshotBytes=203
+
+BUILD SUCCESSFUL in 7s
+4 actionable tasks: 4 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.8.1/userguide/configuration_cache_enabling.html
+Publication consumer log: <checkout>/build/reports/publication-consumer/java21.log

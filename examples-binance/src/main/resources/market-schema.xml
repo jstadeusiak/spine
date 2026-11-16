@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- One provisioned Binance Spot BTCUSDT book. Raw observations remain in each result. -->
+<sbe:messageSchema xmlns:sbe="http://fixprotocol.io/2016/sbe" package="io.github.jstadeusiak.spine.protocol.market.sbe"
+                   id="401" version="1" semanticVersion="1.0.0" byteOrder="littleEndian">
+  <types>
+    <composite name="messageHeader">
+      <type name="blockLength" primitiveType="uint16"/><type name="templateId" primitiveType="uint16"/>
+      <type name="schemaId" primitiveType="uint16"/><type name="version" primitiveType="uint16"/>
+    </composite>
+    <composite name="groupSizeEncoding">
+      <type name="blockLength" primitiveType="uint16"/><type name="numInGroup" primitiveType="uint16" maxValue="16384"/>
+    </composite>
+    <composite name="bytesEncoding">
+      <type name="length" primitiveType="uint32" maxValue="524288"/><type name="varData" primitiveType="uint8" length="0"/>
+    </composite>
+  </types>
+  <sbe:message name="BookSource" id="1">
+    <field name="venueId" id="1" type="uint32"/><field name="instrumentId" id="2" type="uint32"/>
+    <field name="epoch" id="3" type="uint64"/><field name="format" id="4" type="uint8" description="1 JSON diff; 2 tagged SBE diff; 3 REST bootstrap"/>
+    <field name="priceScale" id="5" type="uint8"/><field name="quantityScale" id="6" type="uint8"/>
+    <field name="maximumAgeNanos" id="7" type="int64"/>
+  </sbe:message>
+  <sbe:message name="BootstrapChunk" id="2" description="Contiguous retained fragments; install only after complete validation">
+    <field name="bootstrapId" id="1" type="uint64"/><field name="totalLength" id="2" type="uint32"/>
+    <field name="chunkOffset" id="3" type="uint32"/><data name="fragment" id="4" type="bytesEncoding"/>
+  </sbe:message>
+  <sbe:message name="BookResult" id="3">
+    <field name="venueId" id="1" type="uint32"/><field name="instrumentId" id="2" type="uint32"/>
+    <field name="epoch" id="3" type="uint64"/><field name="frontier" id="4" type="uint64"/>
+    <field name="lastAppliedTimeNanos" id="5" type="int64"/><field name="bidFloor" id="6" type="int64"/>
+    <field name="askCeiling" id="7" type="int64"/><field name="bidPrice" id="8" type="int64"/>
+    <field name="bidSize" id="9" type="int64"/><field name="askPrice" id="10" type="int64"/>
+    <field name="askSize" id="11" type="int64"/><field name="outcome" id="12" type="uint8"/>
+    <field name="status" id="13" type="uint8"/><field name="priceScale" id="14" type="uint8"/>
+    <field name="quantityScale" id="15" type="uint8"/><data name="observation" id="16" type="bytesEncoding"/>
+  </sbe:message>
+  <sbe:message name="MarketSnapshot" id="4">
+    <field name="venueId" id="1" type="uint32"/><field name="instrumentId" id="2" type="uint32"/>
+    <field name="epoch" id="3" type="uint64"/><field name="priceScale" id="4" type="uint8"/>
+    <field name="quantityScale" id="5" type="uint8"/><field name="maximumAgeNanos" id="6" type="int64"/>
+    <field name="frontier" id="7" type="uint64"/><field name="status" id="8" type="uint8"/>
+    <field name="lastAppliedTimeNanos" id="9" type="int64"/><field name="bidFloor" id="10" type="int64"/>
+    <field name="askCeiling" id="11" type="int64"/><field name="lastFirstId" id="12" type="uint64"/>
+    <field name="lastLastId" id="13" type="uint64"/><field name="bootstrapId" id="14" type="uint64"/>
+    <field name="bootstrapSource" id="15" type="uint32"/><field name="bootstrapConfig" id="16" type="uint32"/>
+    <field name="bootstrapClock" id="17" type="uint32"/><field name="bootstrapTotal" id="18" type="uint32"/>
+    <group name="sources" id="19" dimensionType="groupSizeEncoding">
+      <field name="sourceId" id="1" type="uint32"/><field name="configuration" id="2" type="uint32"/>
+      <field name="clockId" id="3" type="uint32"/><field name="format" id="4" type="uint8"/>
+    </group>
+    <group name="levels" id="20" dimensionType="groupSizeEncoding">
+      <field name="side" id="1" type="uint8"/><field name="price" id="2" type="int64"/><field name="size" id="3" type="int64"/>
+    </group>
+    <group name="lastLevels" id="21" dimensionType="groupSizeEncoding">
+      <field name="side" id="1" type="uint8"/><field name="price" id="2" type="int64"/><field name="size" id="3" type="int64"/>
+    </group>
+    <group name="pending" id="22" dimensionType="groupSizeEncoding">
+      <field name="firstId" id="1" type="uint64"/><field name="lastId" id="2" type="uint64"/>
+      <field name="timeNanos" id="3" type="int64"/>
+      <group name="levels" id="4" dimensionType="groupSizeEncoding">
+        <field name="side" id="1" type="uint8"/><field name="price" id="2" type="int64"/><field name="size" id="3" type="int64"/>
+      </group>
+    </group>
+    <data name="bootstrapBytes" id="23" type="bytesEncoding"/>
+  </sbe:message>
+</sbe:messageSchema>
