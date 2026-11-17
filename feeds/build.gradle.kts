@@ -10,6 +10,10 @@ dependencies {
 
 application { mainClass.set("io.github.jstadeusiak.spine.feeds.FeedMain") }
 
+tasks.named<Test>("test") {
+    jvmArgs("-Xbatch")
+}
+
 tasks.register<Jar>("bundle") {
     dependsOn(configurations.runtimeClasspath)
     archiveClassifier.set("bundle")

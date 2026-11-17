@@ -125,6 +125,12 @@ warm-up. A local JFR trace attributed a 256-byte service callback allocation to 
 after warm-up; that job lacked a trace, so matching its cause remains an inference. Measurement windows, negative
 controls and zero-byte assertions are unchanged. Production JVMs and Stage One latency JVMs do not use this option.
 
+The feeds test JVM also uses `-Xbatch`. In a bounded ARM Java 21 experiment, compiler logs showed C2 compilation
+starting inside the binary assembly gate's final measurement window; all four synchronous-compilation runs
+completed C2 during warm-up and passed. The traces establish compilation timing, not the allocating object's
+identity. The fixed 10,000-cycle warm-up, 256/512-cycle measurement windows, escaping control and zero-byte
+assertions are unchanged. This setting applies only to the test JVM.
+
 After traffic warm-up the producer also holds a maximum-sized pending proposal with offers disabled. A 10,000-poll
 warm-up precedes a measured 10,000-poll window requiring zero owner allocation and no service progress for that proposal.
 `EventHandlerTest` separately measures 10,000/100,000 three-handler payload-consuming callbacks at zero bytes after
