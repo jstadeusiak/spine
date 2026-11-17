@@ -148,9 +148,11 @@ public final class CapturedIngress implements AutoCloseable {
 
     @Override public void close() { closed = true; CloseHelper.closeAll(capture, producer); }
 
+    private record Recording(long id, long startPosition, long stopPosition) {}
+
     private static void recover(final AeronArchive archive, final String alias, final int stream, final int replayStream,
         final long timeout, final Recovery state) {
-        final List<long[]> recordings = new ArrayList<>();
+        final List<Recording> recordings = new ArrayList<>();
         final long[] next = {0};
         int count;
         do {
@@ -158,29 +160,31 @@ public final class CapturedIngress implements AutoCloseable {
                 termId, segment, term, mtu, session, recordedStream, stripped, original, identity) -> {
                 next[0] = id + 1;
                 if (recordedStream == stream && alias.equals(ChannelUri.parse(original).get("alias"))) {
-                    recordings.add(new long[] {id, start, stop});
+                    recordings.add(new Recording(id, start, stop));
                 }
             });
         } while (count == 100);
         for (int i = 0; i < recordings.size(); i++) {
-            final long[] recording = recordings.get(i);
-            long end = recording[2];
+            final Recording recording = recordings.get(i);
+            long end = recording.stopPosition();
             final long deadline = System.nanoTime() + timeout;
             while (end == AeronArchive.NULL_POSITION) {
-                end = archive.getStopPosition(recording[0]);
+                end = archive.getStopPosition(recording.id());
                 if (System.nanoTime() - deadline >= 0) { throw new IllegalStateException("previous capture owner still active"); }
                 LockSupport.parkNanos(100_000);
             }
-            if (end < recording[1] || ((end | recording[1]) & 31) != 0) {
+            if (end < recording.startPosition() || ((end | recording.startPosition()) & 31) != 0) {
                 throw new IllegalStateException("invalid capture recording fence");
             }
-            state.completePosition = recording[1];
-            if (end != recording[1]) { replay(archive, recording[0], recording[1], end, replayStream, timeout, state); }
+            state.completePosition = recording.startPosition();
+            if (end != recording.startPosition()) {
+                replay(archive, recording.id(), recording.startPosition(), end, replayStream, timeout, state);
+            }
             if (state.assembling) {
                 if (i != recordings.size() - 1) { throw new IllegalStateException("incomplete prior capture generation"); }
                 // This tail was never offered under capture-before-admission. Remove it before a new generation
                 // makes it an earlier discontinuity on the next restart; retain every complete proposal.
-                archive.truncateRecording(recording[0], state.completePosition);
+                archive.truncateRecording(recording.id(), state.completePosition);
             }
         }
     }

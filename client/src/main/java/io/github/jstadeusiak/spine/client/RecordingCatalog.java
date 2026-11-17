@@ -116,12 +116,14 @@ public final class RecordingCatalog {
     public Span select(final long nextSequence) {
         Span selected = null;
         for (final Span span : spans) {
-            if ((span.firstSequence() <= nextSequence && span.lastSequence() >= nextSequence)
-                || (nextSequence == head + 1 && span.active()
-                    && (span.lastSequence() == head && (head != 0 || span.firstSequence() == 0)))) {
-                if (selected == null || span.lastSequence() > selected.lastSequence()
-                    || (span.lastSequence() == selected.lastSequence() && span.active() && !selected.active())) { selected = span; }
-            }
+            final boolean containsNext = span.firstSequence() <= nextSequence && span.lastSequence() >= nextSequence;
+            final boolean followsHead = nextSequence == head + 1 && span.active()
+                && span.lastSequence() == head && (head != 0 || span.firstSequence() == 0);
+            if (!containsNext && !followsHead) { continue; }
+            final boolean extendsRange = selected == null || span.lastSequence() > selected.lastSequence();
+            final boolean activeTie = selected != null && span.lastSequence() == selected.lastSequence()
+                && span.active() && !selected.active();
+            if (extendsRange || activeTie) { selected = span; }
         }
         return selected;
     }
