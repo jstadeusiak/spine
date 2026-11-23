@@ -1,0 +1,134 @@
+{
+  "commit": "d77a22a10072d6579f2e4ba371a21cd72630154b",
+  "run": "https://github.com/jstadeusiak/spine/actions/runs/43883646821",
+  "runner": "ubuntu-latest",
+  "sourceManifest": "ci-source-sha256.json",
+  "builds": {
+    "java21": {
+      "tests": 195,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "modules": {
+        "client": {
+          "tests": 30,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "examples-binance": {
+          "tests": 42,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "feeds": {
+          "tests": 24,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "protocol": {
+          "tests": 19,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sequencer": {
+          "tests": 73,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "testkit": {
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      }
+    },
+    "java25": {
+      "tests": 195,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "modules": {
+        "client": {
+          "tests": 30,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "examples-binance": {
+          "tests": 42,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "feeds": {
+          "tests": 24,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "protocol": {
+          "tests": 19,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sequencer": {
+          "tests": 73,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "testkit": {
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      }
+    }
+  },
+  "stageOne": {
+    "shared": "success",
+    "dedicated": "success"
+  },
+  "publicationConsumers": {
+    "java21": "success",
+    "java25": "success"
+  },
+  "compilationProfile": "Synchronous compilation (-Xbatch) only for sequencer:test; production and Stage One JVM settings unchanged.",
+  "publicationStaging": {
+    "java21": "success",
+    "java25": "success"
+  },
+  "notes": [
+    "Successful d77a22a baseline includes SequencerService recording-registration readiness and its regression (195 tests); it precedes the subsequent CapturedIngress registration readiness fix and regression."
+  ],
+  "artifacts": [
+    {
+      "name": "build-java-25",
+      "sha256": "2e34aeb948c076826808260b88ec7d5fc59fcff71b49373eba2dbbe98cdbfa91",
+      "githubDigestMatches": true
+    },
+    {
+      "name": "build-java-21",
+      "sha256": "d491967ac6fd7174261bbb9e1cacb757fd9f690e346a0eeec79abfd083bcd3d0",
+      "githubDigestMatches": true
+    },
+    {
+      "name": "stage-one-dedicated",
+      "sha256": "7042c55547c3767201d40fc4c0ab1ed4da1bf8f4f9e15da654e1c681af2fccbb",
+      "githubDigestMatches": true
+    },
+    {
+      "name": "stage-one-shared",
+      "sha256": "0a32a568d66f9dbaf219d9836a432577dcbf51821e8f27e5f7a74c24d66ce8ff",
+      "githubDigestMatches": true
+    }
+  ]
+}

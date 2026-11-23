@@ -1,0 +1,18 @@
+[versions]
+agrona = "2.6.1"
+aeron = "1.53.3"
+sbe = "1.40.2"
+junit = "5.10.2"
+assertj = "3.25.3"
+
+[libraries]
+agrona = { module = "org.agrona:agrona", version.ref = "agrona" }
+aeron-client = { module = "io.aeron:aeron-client", version.ref = "aeron" }
+aeron-driver = { module = "io.aeron:aeron-driver", version.ref = "aeron" }
+aeron-archive = { module = "io.aeron:aeron-archive", version.ref = "aeron" }
+aeron-cluster = { module = "io.aeron:aeron-cluster", version.ref = "aeron" }
+aeron-samples = { module = "io.aeron:aeron-samples", version.ref = "aeron" }
+sbe-tool = { module = "uk.co.real-logic:sbe-tool", version.ref = "sbe" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version = "1.10.2" }
+assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }

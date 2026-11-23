@@ -1,0 +1,132 @@
+{
+  "status": "PASSED",
+  "failure": "",
+  "profile": "<checkout>/sequencer/build/reports/stage-one/run-bb5f0f6b-5ebf-4966-8428-42cd476d6b7b/profile.json",
+  "dataDirectory": "<checkout>/sequencer/build/reports/stage-one/run-bb5f0f6b-5ebf-4966-8428-42cd476d6b7b/data",
+  "transportConfiguration": {
+    "profile": "dedicated",
+    "mediaDriverThreadingMode": "DEDICATED",
+    "archiveThreadingMode": "DEDICATED",
+    "clusterConsensusAndService": "separate agent threads",
+    "termBytes": 1048576,
+    "archiveSegmentBytes": 1048576,
+    "ipcMtuBytes": 1024,
+    "driverTimerIntervalNanos": 5000000,
+    "archiveFileSyncLevel": 0,
+    "corePinning": false,
+    "idleStrategy": {
+      "type": "BackoffIdleStrategy",
+      "maxSpins": 100,
+      "maxYields": 100,
+      "minParkNanos": 1000,
+      "maxParkNanos": 10000
+    }
+  },
+  "runtime": {
+    "java": "25.0.4.1+1-LTS",
+    "os": "Mac OS X",
+    "arch": "aarch64",
+    "processors": 16
+  },
+  "versions": {
+    "canonicalSchemaId": 101,
+    "captureSchemaId": 201,
+    "captureVersion": 1,
+    "interpreter": "stage-one-capture-projection-v1"
+  },
+  "scope": "synthetic single-host single-node page-cache; no power-loss, host-loss or HFT claim",
+  "logId": 42,
+  "declaredFences": {
+    "initial": 22,
+    "idle": 280,
+    "replay": 1280,
+    "continued": 1282
+  },
+  "observedRecordedCursor": 1282,
+  "observedArchiveDeliveryLagEvents": 1,
+  "orderedFullFrameSha256": "bfdc176fb0d1bb32ed40f194fd4288d2bc9b1f8bcfc6a3168c8b8e5e20677e81",
+  "continuedSha256": "f5a39e848383e97a928ff6102dfe33a2cabcbfc2b1cd339d56d9afd348b6b794",
+  "exactPendingSha256": "b4acc4ebc9fadeefa1ab2514199a96f350f998ce007f496d8dccfce8aae56561",
+  "recordingGenerations": [
+    0,
+    6
+  ],
+  "completedStages": [
+    "collector killed after lost ACCEPTED; external capture restores exact pending bytes/identity and original DUPLICATE event",
+    "paused data reaches the recorded idle final fence through independent Archive delivery without another observation",
+    "400-event Archive backlog drained while the actual fixed-rate producer remains active",
+    "snapshot at 280 plus ABORT at 1280 replays one authoritative input suffix; 1000 repeated output frames are byte-verified",
+    "clean/checkpoint state and ordered full-frame SHA match; captured producer progress continues to 1282"
+  ],
+  "admission": {
+    "samples": 1256,
+    "p50Nanos": 403584,
+    "p99Nanos": 11403541,
+    "p999Nanos": 11622583
+  },
+  "recorded": {
+    "samples": 1256,
+    "p50Nanos": 334542,
+    "p99Nanos": 1051084,
+    "p999Nanos": 1855667
+  },
+  "fastApplied": {
+    "samples": 1256,
+    "p50Nanos": 370500,
+    "p99Nanos": 1168667,
+    "p999Nanos": 1607458
+  },
+  "sustained": {
+    "observations": 1000,
+    "actualBeginRate": 100.001014,
+    "actualAdmissionRate": 99.996933,
+    "actualRecordedRate": 99.99823,
+    "workerElapsedNanos": 9990534708,
+    "maximumScheduleLatenessNanos": 3063125
+  },
+  "idleRecoveryNanos": 84885458,
+  "liveRecoveryNanos": 9693583,
+  "liveCatchupObservationsPerSecond": 41367.572754,
+  "parentObservedPeakHeapBytes": 482841880,
+  "parentSampledCpuNanos": 50274229000,
+  "parentElapsedNanos": 23317545792,
+  "cpuGate": false,
+  "children": [
+    {
+      "process": "producer-first",
+      "observedPeakHeapBytes": 11663768,
+      "sampledCpuNanos": 241094000
+    },
+    {
+      "process": "fast",
+      "observedPeakHeapBytes": 31586712,
+      "sampledCpuNanos": 1401815000
+    },
+    {
+      "process": "slow",
+      "observedPeakHeapBytes": 30538136,
+      "sampledCpuNanos": 1496176000
+    },
+    {
+      "process": "producer-reopened",
+      "observedPeakHeapBytes": 52558232,
+      "sampledCpuNanos": 2049326000
+    },
+    {
+      "process": "clean-replay",
+      "observedPeakHeapBytes": 35781016,
+      "sampledCpuNanos": 572780000
+    },
+    {
+      "process": "checkpoint-restored",
+      "observedPeakHeapBytes": 35781016,
+      "sampledCpuNanos": 590170000
+    },
+    {
+      "process": "producer-after-cluster-restart",
+      "observedPeakHeapBytes": 41023896,
+      "sampledCpuNanos": 322944000
+    }
+  ],
+  "measurementMethod": "See immutable profile; no cross-JVM monotonic timestamp subtraction; actual Archive bytes establish recording observations."
+}

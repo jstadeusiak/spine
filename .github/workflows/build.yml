@@ -1,0 +1,72 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Java ${{ matrix.java }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        java: ['21', '25']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+          cache: gradle
+      - run: ./gradlew build :testkit:conformance :examples:run stagePublications --no-daemon -PjavaVersion=${{ matrix.java }}
+      - run: python3 testkit/src/test/publication-consumer/check.py --java-version ${{ matrix.java }}
+      - name: Run Python capture audits
+        if: matrix.java == '25'
+        run: |
+          python3 sequencer/src/test/python/binance_pair_audit.py --fetch-schema
+          python3 -m unittest discover -s sequencer/src/test/python
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: build-java-${{ matrix.java }}
+          path: |
+            **/build/reports/**
+            **/build/test-results/**
+          if-no-files-found: warn
+          retention-days: 7
+
+  stage-one:
+    name: Stage One ${{ matrix.profile }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [shared, dedicated]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: gradle
+      - run: ./gradlew :sequencer:stageOneAcceptance --no-daemon -PjavaVersion=25 -PaeronProfile=${{ matrix.profile }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage-one-${{ matrix.profile }}
+          path: |
+            **/build/reports/**
+            **/build/test-results/**
+          if-no-files-found: warn
+          retention-days: 7

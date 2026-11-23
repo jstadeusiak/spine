@@ -1,0 +1,210 @@
+{
+  "protocol": {
+    ".jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/protocol/1.0.0/protocol-1.0.0.jar",
+      "sha256": "3e6d51a49e10b8db6d6e6c9e19dea40475f47a354b3b949bc2e5a3e7cb334769",
+      "bytes": 111591,
+      "classMajorVersions": [
+        69
+      ]
+    },
+    "-sources.jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/protocol/1.0.0/protocol-1.0.0-sources.jar",
+      "sha256": "b3534c71ff1690695196420b3050161d2a79b211099e817a3a34f296e3c7d026",
+      "bytes": 62390,
+      "classMajorVersions": []
+    },
+    "-javadoc.jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/protocol/1.0.0/protocol-1.0.0-javadoc.jar",
+      "sha256": "9e42cb193839af039989f3269975da97b817c81d083841d92014a429941b2f8c",
+      "bytes": 4414591,
+      "classMajorVersions": []
+    },
+    ".pom": {
+      "path": "build/repository/io/github/jstadeusiak/spine/protocol/1.0.0/protocol-1.0.0.pom",
+      "sha256": "8faf7b9ef41b931e1947e3d3b7632a9bcdbb0ee85a3cf305989b168c8af054b9",
+      "bytes": 1549
+    },
+    ".module": {
+      "path": "build/repository/io/github/jstadeusiak/spine/protocol/1.0.0/protocol-1.0.0.module",
+      "sha256": "8a6ef4bd3e8819795d635938ad6978ad83261c395991de43abd1536044979ae1",
+      "bytes": 3829,
+      "variants": [
+        "apiElements",
+        "runtimeElements",
+        "sourcesElements",
+        "javadocElements"
+      ]
+    }
+  },
+  "client": {
+    ".jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/client/1.0.0/client-1.0.0.jar",
+      "sha256": "4623415fdc476eaf7a444a5e560629033445fe72f9bbe75181872be2dcbdb466",
+      "bytes": 22080,
+      "classMajorVersions": [
+        69
+      ]
+    },
+    "-sources.jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/client/1.0.0/client-1.0.0-sources.jar",
+      "sha256": "7144b1a7e81f4c12356833d2d13c1fc275d577ed5f1f7f4c691a181ffe95b0d1",
+      "bytes": 12917,
+      "classMajorVersions": []
+    },
+    "-javadoc.jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/client/1.0.0/client-1.0.0-javadoc.jar",
+      "sha256": "2b0021ad425020fd0a48e21cba5b9f64511a7a81e349820d944a6ded01865f9c",
+      "bytes": 4171944,
+      "classMajorVersions": []
+    },
+    ".pom": {
+      "path": "build/repository/io/github/jstadeusiak/spine/client/1.0.0/client-1.0.0.pom",
+      "sha256": "575b4facf5be9afd2b034394c1c8ca7f423f43902da78f7ef8ea3f8de880782e",
+      "bytes": 1927
+    },
+    ".module": {
+      "path": "build/repository/io/github/jstadeusiak/spine/client/1.0.0/client-1.0.0.module",
+      "sha256": "4f44966102ee022f2f298f51eaba105c7e6de787546f11a599777dccf0016e0f",
+      "bytes": 4475,
+      "variants": [
+        "apiElements",
+        "runtimeElements",
+        "sourcesElements",
+        "javadocElements"
+      ]
+    }
+  },
+  "sequencer": {
+    ".jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/sequencer/1.0.0/sequencer-1.0.0.jar",
+      "sha256": "203ee3e52d82ddd34f7450986888fca6821eaec535869c9a85e67cad3ec200be",
+      "bytes": 15070,
+      "classMajorVersions": [
+        69
+      ]
+    },
+    "-sources.jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/sequencer/1.0.0/sequencer-1.0.0-sources.jar",
+      "sha256": "6a815257a6975f18cb55d2dbe948e31c5453c02bd571c72212f9292a7006f0ff",
+      "bytes": 14263,
+      "classMajorVersions": []
+    },
+    "-javadoc.jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/sequencer/1.0.0/sequencer-1.0.0-javadoc.jar",
+      "sha256": "3aa302339697f2392c7283ac35e678339f37f9c9af7adf7c35dcbbcde02afb8e",
+      "bytes": 4168854,
+      "classMajorVersions": []
+    },
+    ".pom": {
+      "path": "build/repository/io/github/jstadeusiak/spine/sequencer/1.0.0/sequencer-1.0.0.pom",
+      "sha256": "22dc6d34a809691db404d52a82bbfbecb7861ae83e44c9832b59ef154d8e6b62",
+      "bytes": 2144
+    },
+    ".module": {
+      "path": "build/repository/io/github/jstadeusiak/spine/sequencer/1.0.0/sequencer-1.0.0.module",
+      "sha256": "989af1e9b93f5ca88041a2546bf60734c64d3d0de914af88c0e7d8324bf4b789",
+      "bytes": 7099,
+      "variants": [
+        "apiElements",
+        "runtimeElements",
+        "sourcesElements",
+        "javadocElements",
+        "testFixturesApiElements",
+        "testFixturesRuntimeElements"
+      ]
+    },
+    "-test-fixtures.jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/sequencer/1.0.0/sequencer-1.0.0-test-fixtures.jar",
+      "sha256": "6cdf6b4b438f86ec4c7ac332b00d835bad92141e9561defd865de407b07f5722",
+      "bytes": 13036,
+      "classMajorVersions": [
+        69
+      ]
+    }
+  },
+  "testkit": {
+    ".jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/testkit/1.0.0/testkit-1.0.0.jar",
+      "sha256": "77a056e303e53b7bdc7979dbd74854bc88663e1513e81ac639dcf99658e5bc27",
+      "bytes": 1002,
+      "classMajorVersions": []
+    },
+    "-sources.jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/testkit/1.0.0/testkit-1.0.0-sources.jar",
+      "sha256": "38d3f4dfd98c5c8e5e0f65e164c83b6ea6d001c74c0c0a5c15e5dac6d889bb54",
+      "bytes": 25532,
+      "classMajorVersions": []
+    },
+    "-javadoc.jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/testkit/1.0.0/testkit-1.0.0-javadoc.jar",
+      "sha256": "02454bf1c3e1313b44b2509c91180002fd46bc662e3b6da423cd0e07a5105908",
+      "bytes": 4242209,
+      "classMajorVersions": []
+    },
+    ".pom": {
+      "path": "build/repository/io/github/jstadeusiak/spine/testkit/1.0.0/testkit-1.0.0.pom",
+      "sha256": "4650578df647ad8b2d66b48a1285aafccbeeefb44e68a1339f8de96e4d5453c7",
+      "bytes": 2460
+    },
+    ".module": {
+      "path": "build/repository/io/github/jstadeusiak/spine/testkit/1.0.0/testkit-1.0.0.module",
+      "sha256": "232e41d02ff71b8372c822cb74f54cfaf55826a68320a71bf935af675d9f08e0",
+      "bytes": 7362,
+      "variants": [
+        "apiElements",
+        "runtimeElements",
+        "sourcesElements",
+        "javadocElements",
+        "testFixturesApiElements",
+        "testFixturesRuntimeElements"
+      ]
+    },
+    "-test-fixtures.jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/testkit/1.0.0/testkit-1.0.0-test-fixtures.jar",
+      "sha256": "614c128fc54c0aaa291557f23bb340247931a37a7e1b09f232f99026f9933f57",
+      "bytes": 46718,
+      "classMajorVersions": [
+        69
+      ]
+    }
+  },
+  "examples-binance": {
+    ".jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/examples-binance/1.0.0/examples-binance-1.0.0.jar",
+      "sha256": "4b8e58a76d04763afc7f924eeb20e62833755a50a0364a29e8af79f5ebfaaa33",
+      "bytes": 96756,
+      "classMajorVersions": [
+        69
+      ]
+    },
+    "-sources.jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/examples-binance/1.0.0/examples-binance-1.0.0-sources.jar",
+      "sha256": "bff22320274a7e17bff5a46fa656c10b34ba476cf437e9f69e399cce9bebe6db",
+      "bytes": 45464,
+      "classMajorVersions": []
+    },
+    "-javadoc.jar": {
+      "path": "build/repository/io/github/jstadeusiak/spine/examples-binance/1.0.0/examples-binance-1.0.0-javadoc.jar",
+      "sha256": "9b4bb7000af7ec64ca7938a7c0f493164af5713080349d4e59bb5e7930274823",
+      "bytes": 4328089,
+      "classMajorVersions": []
+    },
+    ".pom": {
+      "path": "build/repository/io/github/jstadeusiak/spine/examples-binance/1.0.0/examples-binance-1.0.0.pom",
+      "sha256": "a0cfd78a9e4af0635979e60b0401704ca61efb3f0ab926117ca1cb30a4df444f",
+      "bytes": 1588
+    },
+    ".module": {
+      "path": "build/repository/io/github/jstadeusiak/spine/examples-binance/1.0.0/examples-binance-1.0.0.module",
+      "sha256": "180c0e026f14a6f7903e7b6f5ee6176b46b386b9a3d659e40312da0dcf8a9dae",
+      "bytes": 3939,
+      "variants": [
+        "apiElements",
+        "runtimeElements",
+        "sourcesElements",
+        "javadocElements"
+      ]
+    }
+  }
+}
